@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:we_are_here_for_you/widgets/drawer_app/my_drawer.dart';
+import 'package:we_are_here_for_you/widgets/main_app/all_events.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: AllEvents(),
       drawer: MyDrawer(),
     );
   }
