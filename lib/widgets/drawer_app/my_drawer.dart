@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_are_here_for_you/screen/about_us.dart';
+import 'package:we_are_here_for_you/screen/create_event.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -21,11 +22,13 @@ class MyDrawer extends StatelessWidget {
               children: [
                 DrawerBars(() {}, Icons.work_outline_sharp, 'الصفحة الرئيسية'),
                 DrawerBars(() {
-                  Navigator.pushNamed(context, AboutUs.AboutUsPage);
+                  Navigator.pushNamed(context, AboutUs.aboutUsPage);
                 }, Icons.work_outline_sharp, 'عن الجمعية'),
                 DrawerBars(() {}, Icons.work_outline_sharp, 'مبادراتنا'),
                 DrawerBars(() {}, Icons.work_outline_sharp, 'تواصل معنا'),
-                DrawerBars(() {}, Icons.work_outline_sharp, 'اضافة مبادرة'),
+                DrawerBars(() {
+                  Navigator.pushNamed(context, CreateEvent.createEventPage);
+                }, Icons.work_outline_sharp, 'اضافة مبادرة'),
                 DrawerBars(
                     () {}, Icons.work_outline_sharp, 'المشاركين في المبادرة'),
               ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
-  static const AboutUsPage = '/AboutUsPage';
+  static const aboutUsPage = '/AboutUsPage';
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,19 @@ class AboutUs extends StatelessWidget {
                 ),
               ],
             ),
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.all(5),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Column(
               children: [
                 Container(
                   height: appHeight * 0.4,
                   decoration: const BoxDecoration(
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                         color: Colors.white,
                         spreadRadius: 10,
                         blurRadius: 30,
-                        offset: Offset(0, 2), // changes position of shadow
+                        offset: Offset(0, 2),
                       ),
                     ],
                     color: Colors.orange,

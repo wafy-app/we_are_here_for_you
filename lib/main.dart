@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:we_are_here_for_you/providers/events_provider.dart';
 import 'package:we_are_here_for_you/screen/about_us.dart';
+import 'package:we_are_here_for_you/screen/create_event.dart';
 
 import 'package:we_are_here_for_you/screen/home_screen.dart';
 
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          AboutUs.AboutUsPage: (context) => const AboutUs(),
+          CreateEvent.createEventPage: (context) => CreateEvent(),
+          AboutUs.aboutUsPage: (context) => const AboutUs(),
         },
       ),
     );
