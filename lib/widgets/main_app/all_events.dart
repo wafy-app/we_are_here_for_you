@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_are_here_for_you/model/Event.dart';
@@ -21,7 +19,10 @@ class _AllEventsState extends State<AllEvents> {
       itemCount: items.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text(items[index].eventName),
+          title: Text(
+            items[index].eventName,
+            style: const TextStyle(color: Colors.amber),
+          ),
         );
       },
     );

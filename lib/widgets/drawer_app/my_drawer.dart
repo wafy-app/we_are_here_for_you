@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_are_here_for_you/screen/about_us.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -19,7 +20,9 @@ class MyDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DrawerBars(() {}, Icons.work_outline_sharp, 'الصفحة الرئيسية'),
-                DrawerBars(() {}, Icons.work_outline_sharp, 'عن الجمعية'),
+                DrawerBars(() {
+                  Navigator.pushNamed(context, AboutUs.AboutUsPage);
+                }, Icons.work_outline_sharp, 'عن الجمعية'),
                 DrawerBars(() {}, Icons.work_outline_sharp, 'مبادراتنا'),
                 DrawerBars(() {}, Icons.work_outline_sharp, 'تواصل معنا'),
                 DrawerBars(() {}, Icons.work_outline_sharp, 'اضافة مبادرة'),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:we_are_here_for_you/providers/events_provider.dart';
+import 'package:we_are_here_for_you/screen/about_us.dart';
 
 import 'package:we_are_here_for_you/screen/home_screen.dart';
 
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
           child: HomeScreen(),
         ),
         initialRoute: '/',
+        routes: {
+          AboutUs.AboutUsPage: (context) => const AboutUs(),
+        },
       ),
     );
   }
