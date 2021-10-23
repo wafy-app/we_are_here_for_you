@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:we_are_here_for_you/model/Event.dart';
+import 'package:we_are_here_for_you/model/my_event.dart';
 
 class EventsProvider extends ChangeNotifier {
   // ignore: prefer_final_fields

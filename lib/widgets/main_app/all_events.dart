@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:we_are_here_for_you/model/Event.dart';
+import 'package:we_are_here_for_you/model/my_event.dart';
 import 'package:we_are_here_for_you/providers/events_provider.dart';
 
 class AllEvents extends StatefulWidget {
