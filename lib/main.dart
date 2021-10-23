@@ -6,6 +6,7 @@ import 'package:we_are_here_for_you/screen/about_us.dart';
 import 'package:we_are_here_for_you/screen/create_event.dart';
 
 import 'package:we_are_here_for_you/screen/home_screen.dart';
+import 'package:we_are_here_for_you/screen/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,14 +25,13 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Directionality(
-          textDirection: TextDirection.rtl,
-          child: HomeScreen(),
-        ),
+        home: LoginPage(),
+        // home: HomeScreen(),
         initialRoute: '/',
         routes: {
           CreateEvent.createEventPage: (context) => CreateEvent(),
