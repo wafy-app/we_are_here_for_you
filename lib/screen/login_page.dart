@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:we_are_here_for_you/model/login_data.dart';
+import 'package:we_are_here_for_you/providers/alert_provider.dart';
 import 'package:we_are_here_for_you/screen/signup.dart';
 import 'package:we_are_here_for_you/widgets/image/app_image.dart';
 import 'package:we_are_here_for_you/widgets/layout/bezier_container.dart';
-import 'package:we_are_here_for_you/widgets/button/back_button.dart';
 import 'package:we_are_here_for_you/widgets/button/orange_button.dart';
 import 'package:we_are_here_for_you/widgets/text_field/my_text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key, this.title}) : super(key: key);
-
-  final String? title;
-
+  const LoginPage({
+    Key? key,
+  }) : super(key: key);
+  static const loginPageRoute = '/LoginPageRoute';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var loginData = LogInData('', '');
+
+  Widget _emailPasswordWidget() {
+    return Column(
+      children: <Widget>[
+        MyTextField("Email", 0.1, (value) {
+          loginData.email = value;
+        }),
+        MyTextField("Password", 0.1, (value) {
+          loginData.password = value;
+        }, isPassword: true),
+      ],
+    );
+  }
+
   Widget _divider() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
-        children: <Widget>[
+        children: const <Widget>[
           SizedBox(
             width: 20,
           ),
@@ -53,16 +69,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget _createAccountLabel() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        Navigator.pushNamed(context, SignUpPage.signUpPageRoute);
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
+        margin: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.all(15),
         alignment: Alignment.bottomCenter,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: const [
             Text(
               'Don\'t have an account ?',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
@@ -83,25 +98,44 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        MyTextField("Email id", 0.1, (value) {}),
-        MyTextField("Password", 0.1, (value) {}, isPassword: true),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    // 0xff132f4b
-    // 0xff7c7c7d
-    // 0xfff7a622
-
     int grayColor = 0xff132f4b;
     int secondColor = 0xff7c7c7d;
     int orangeColor = 0xfff7a622;
+    var alartProvider = Provider.of<AlertProvider>(context, listen: false);
+
+    // Reg EXP
+    bool validateEmail(String value) {
+      String pattern =
+          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+      RegExp regex = RegExp(pattern);
+      return (regex.hasMatch(value)) ? false : true;
+    }
+
+    void _submitSignInData() {
+      if (loginData.email.isEmpty) {
+        alartProvider.showMyDialog(
+            context, 'Email Error', 'The email field can\'t be empty.');
+        return;
+      }
+      if (loginData.password.isEmpty) {
+        alartProvider.showMyDialog(
+            context, 'Password Error', 'The password field can\'t be empty.');
+        return;
+      }
+
+      if (validateEmail(loginData.email)) {
+        alartProvider.showMyDialog(
+            context, 'Email Error', 'Wrong email adress.');
+        return;
+      }
+
+      print(loginData.email);
+      print(loginData.password);
+    }
+
     return Scaffold(
         body: Container(
       height: height,
@@ -128,21 +162,12 @@ class _LoginPageState extends State<LoginPage> {
                   const AppImage(),
                   _emailPasswordWidget(),
                   SizedBox(height: height * .05),
-                  OrangeButton('Login', () {}),
+                  OrangeButton('Login', _submitSignInData),
                   _divider(),
                   // SizedBox(height: height * .02),
                   _createAccountLabel(),
                 ],
               ),
-            ),
-          ),
-          Positioned(
-            top: 40,
-            left: 0,
-            child: MyBackButton(
-              () {
-                Navigator.pop(context);
-              },
             ),
           ),
         ],
