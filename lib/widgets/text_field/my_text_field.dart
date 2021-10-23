@@ -4,31 +4,32 @@ class MyTextField extends StatelessWidget {
   String title;
   void Function(String)? myOnChange;
   bool isPassword;
-  MyTextField(this.title, this.myOnChange, {this.isPassword = false});
+  double myHieght;
+  MyTextField(this.title, this.myHieght, this.myOnChange,
+      {this.isPassword = false});
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Flexible(
-            child: TextField(
-              obscureText: isPassword,
-              onChanged: myOnChange,
-              decoration: InputDecoration(hintText: title),
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        height: MediaQuery.of(context).size.height * myHieght,
+        child: Flexible(
+          child: TextField(
+            obscureText: isPassword,
+            onChanged: myOnChange,
+            decoration: InputDecoration(
+              label: Text(title),
+              hintText: title,
+              border: const OutlineInputBorder(
+                // borderSide: BorderSide.none,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(35.0),
+                ),
+              ),
+              fillColor: Color(0xfff3f3f4),
+              filled: true,
             ),
-          )
-        ],
-      ),
-    );
+          ),
+        ));
   }
 }
 

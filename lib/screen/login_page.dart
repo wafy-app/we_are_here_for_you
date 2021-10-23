@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:we_are_here_for_you/screen/signup.dart';
-import 'package:we_are_here_for_you/widgets/bezier_container.dart';
+import 'package:we_are_here_for_you/widgets/image/app_image.dart';
+import 'package:we_are_here_for_you/widgets/layout/bezier_container.dart';
 import 'package:we_are_here_for_you/widgets/button/back_button.dart';
 import 'package:we_are_here_for_you/widgets/button/orange_button.dart';
 import 'package:we_are_here_for_you/widgets/text_field/my_text_field.dart';
@@ -82,35 +83,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-          text: 'd',
-          style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
-              color: Color(0xffe46b10)),
-          children: [
-            TextSpan(
-              text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
-            ),
-            TextSpan(
-              text: 'rnz',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
-            ),
-          ]),
-    );
-  }
-
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        MyTextField("Email id", (value) {
-          print(value);
-        }),
-        // MyTextField("Password", (value) {}, isPassword: true),
+        MyTextField("Email id", 0.1, (value) {}),
+        MyTextField("Password", 0.1, (value) {}, isPassword: true),
       ],
     );
   }
@@ -147,21 +124,13 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: height * .2),
-                  _title(),
-                  const SizedBox(height: 50),
+                  SizedBox(height: height * .05),
+                  const AppImage(),
                   _emailPasswordWidget(),
-                  const SizedBox(height: 20),
+                  SizedBox(height: height * .05),
                   OrangeButton('Login', () {}),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.centerRight,
-                    child: const Text('Forgot Password ?',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500)),
-                  ),
                   _divider(),
-                  SizedBox(height: height * .055),
+                  // SizedBox(height: height * .02),
                   _createAccountLabel(),
                 ],
               ),
